@@ -1,0 +1,17 @@
+{
+    "name": "reeho/cruiser-plugin",
+    "description": "Cruser Plugin made for CMS of WordPress",
+    "type": "project",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Ayush Oli",
+            "email": "reehoodayush@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {"Inc\\": "./inc"}
+    }
+}

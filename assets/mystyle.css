@@ -1,0 +1,50 @@
+
+
+/* 
+==== Custom CSS for Subtitle Area
+ */
+
+
+#hc-subtitle {
+	border-color: #dfdfdf;
+	color: #333333;
+	font-size: 1.7em;
+	line-height: 100%;
+	margin: 0 0 5px;
+	padding: 5px 8px 2px 8px;
+	width: 100%;
+}
+
+#hc-subtitle:focus {
+	border-color: #aaa;
+}
+
+#hc-subtitle::-webkit-input-placeholder {  WebKit browsers 
+    color:    #bbb;
+}
+#hc-subtitle:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #bbb;
+}
+#hc-subtitle::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #bbb;
+}
+#hc-subtitle:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #bbb;
+}
+
+
+
+.google-search-button a{
+	color: #fff;
+}
+
+
+.google-search-button a:hover{
+	color: #fff;
+	text-decoration: none;
+}
+
+
+.copy-to-clip-input{
+	display: none;
+}
