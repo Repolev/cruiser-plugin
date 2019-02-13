@@ -25,7 +25,7 @@ class Admin extends BaseController
 			[
 				'page_title' => 'Cruiser Plugin', 
 				'menu_title' => 'Home', 
-				'capability' => 'manage_options', 
+				'capability' => 'edit_posts', 
 				'menu_slug' => 'cruiser_plugin', 
 				'callback' => function() { echo '<h1>Cruiser Plugin</h1>'; }, 
 				'icon_url' => 'dashicons-shield', 
@@ -54,9 +54,9 @@ class Admin extends BaseController
 				'parent_slug'	=>	'cruiser_plugin',
 				'page_title'	=>	'Settings', 
 				'menu_title'	=>	'Settings', 
-				'capability'	=>	'edit_posts', 
+				'capability'	=>	'manage_options', 
 				'menu_slug'		=>	'cruiser_settings', 
-				'callback' 		=>	function (){ echo '<h1>Messages</h1>'; },
+				'callback' 		=>	function (){ echo '<h1>Settings</h1>'; },
 			],
 		];
 

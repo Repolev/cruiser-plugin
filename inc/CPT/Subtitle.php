@@ -143,20 +143,15 @@ function the_subtitle( $before = '', $after = '' )
 {
 	echo Subtitle::get_subtitle( $before, $after );
 }
-
-
 // the jQuery Ajax call here
 add_action( 'admin_footer', 'ajax_fetch' );
 function ajax_fetch() {
 ?>
 <script type="text/javascript">
-
     (function($){
         var searchRequest = null;
-
         jQuery(function () {
             var minlength = 3;
-
             jQuery("#hc-subtitle").keyup(function () {
                 var that = this,
                 value = jQuery(this).val();
@@ -168,10 +163,8 @@ function ajax_fetch() {
                         type: "POST",
                         url: "<?php echo admin_url('admin-ajax.php'); ?>",
                         data: {
-
                             action: 'data_fetch',
                             search_keyword : value
-
                         },
                         dataType: "html",
                         success: function(data){
@@ -192,8 +185,6 @@ function ajax_fetch() {
 
 <?php
 }
-
-
 // the ajax function
 add_action('wp_ajax_data_fetch' , 'data_fetch');
 add_action('wp_ajax_nopriv_data_fetch','data_fetch');
@@ -210,6 +201,5 @@ function data_fetch(){
     	// Text if there is not topic found
     	echo "<span class='notopics'>No Topics Found<span>";
     }
-
     die();
 }

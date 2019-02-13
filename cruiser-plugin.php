@@ -72,10 +72,5 @@ if( class_exists( 'Inc\\Init' ) ){
 	Inc\Init::register_services();
 }
 
-// require_once( 'inc/CPT/CPT_metabox.php' );
 
-
-require_once 'inc\CPT\CPT_sub.php';
-require_once 'inc\CPT\CPT_metabox.php';
-
-require_once('inc\Misc.php');
+require_once('inc\CPT\Subtitle.php');

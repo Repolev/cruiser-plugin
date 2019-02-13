@@ -13,11 +13,13 @@ final class Init
 	public static function get_services() 
 	{
 		return [
+			Misc::class,
 			CPT\CPT::class,
-			// Misc::class,
+			CPT\CPT_metabox::class,
 			Pages\Admin::class,
 			Base\Enqueue::class,
-			Base\SettingsLink::class
+			Base\SettingsLink::class,
+			Attendance\Attendance::class,
 		];
 	}
 
