@@ -198,14 +198,18 @@ function ajax_fetch() {
 add_action('wp_ajax_data_fetch' , 'data_fetch');
 add_action('wp_ajax_nopriv_data_fetch','data_fetch');
 function data_fetch(){
-
-    $the_query = new WP_Query( array( 'posts_per_page' => -1, 's' => esc_attr( $_POST['search_keyword'] ), 'post_type' => 'topics' ) );
-    if( $the_query->have_posts() ) :
+	// fetching the data as the title of the post
+    $the_query = new WP_Query( array( 'posts_per_page' => -1, 's' => esc_attr( $_POST['search_keyword'] ), 'post_type' => array('post', 'topics') ) );
+    if( $the_query->have_posts() ){
         while( $the_query->have_posts() ): $the_query->the_post(); ?>
             <h2><a href="<?php echo esc_url( post_permalink() ); ?>"><?php the_title();?></a></h2>
         <?php endwhile;
-        wp_reset_postdata();  
-    endif;
+        wp_reset_postdata();
+    }
+    else{
+    	// Text if there is not topic found
+    	echo "<span class='notopics'>No Topics Found<span>";
+    }
 
     die();
 }

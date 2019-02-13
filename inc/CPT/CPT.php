@@ -18,6 +18,8 @@ class CPT{
 		add_action( 'wp_ajax_nopriv_update_post_topic_writer', array( $this,'update_post_topic_writer') );
     	add_action( 'wp_ajax_update_post_topic_writer', array( $this, 'update_post_topic_writer') );
 
+		add_action('pre_get_posts', array( $this, 'topics_custom_filter' ));
+
 	}
 
 	function custom_post_type(){
@@ -89,11 +91,10 @@ class CPT{
 				$topic_checkbox_value = ( isset( $meta['topic_checkbox_value'][0] ) &&  '1' === $meta['topic_checkbox_value'][0] ) ? 1 : 0;
 
 				if( $topic_checkbox_value == 0 ){
-			       	echo '<button class="btn btn-sm btn-info" id="content">Pick</button>';
+			       	echo '<button class="btn btn-sm btn-info" id="pickButton-' . $post_id . '" onclick="return pickFunction( '.$post_id.' )">Pick</button>';
 			    }
 			    else {
-			        echo '<a class="btn btn-sm btn-warning">Picked</a>';
-			        
+			        echo '<button class="btn btn-sm btn-outline-primary">Picked</button>';   
 			    }
 				break;
 
@@ -101,22 +102,46 @@ class CPT{
 
 	}
 
-	 function update_post_topic_writer() {
-	 	global $post;
-        if ( isset($_POST) ) {
+	function update_post_topic_writer() 
+	{
+	    if ( isset($_POST) ) {
 
-            $post_id = $_POST[$post->ID];
+	        $post_id = $_POST['post_id'];
 
-            $topic_checkbox_value = ( isset( $_POST['topic_checkbox_value'] ) && '1' === $_POST['topic_checkbox_value'] ) ? 1 : 0;
-    		update_post_meta( $post_id, 'topic_checkbox_value', esc_attr( $topic_checkbox_value ) );
+		    update_post_meta( $post_id, 'topic_checkbox_value', 1 );
 
 			$return = array(
-		    	'message' => __( 'Saved', 'cruiser' ),
+			    'message' => __( 'Saved', 'textdomain' ),
 			);
 			wp_send_json_success( $return );
 
-    	}
+	    }
 	}
+
+
+	function topics_custom_filter($query)
+	{
+	    //$pagenow holds the name of the current page being viewed
+	     global $pagenow, $typenow;  
+
+	 	$user = wp_get_current_user();
+	    $allowed_roles = array('author');
+	    //Shouldn't happen for the admin, but for any role with the edit_posts capability and only on the posts list page, that is edit.php
+	    if(array_intersect($allowed_roles, $user->roles ) && ('edit.php' == $pagenow) &&  $typenow == 'topics')
+	    { 
+	    //global $query's set() method for setting the author as the current user's id
+	        $query->set(
+		        'meta_query', array(
+			        array(
+			            'key'     => 'cruiser_writer_value_key',
+			            'value'   => $user->display_name,
+			            'compare' => '==',
+			        ),
+		        )
+	        );
+	    }
+	}
+
+
+    
 }
-?>
-<?php

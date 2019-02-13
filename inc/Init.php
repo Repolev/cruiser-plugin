@@ -13,9 +13,10 @@ final class Init
 	public static function get_services() 
 	{
 		return [
+			CPT\CPT::class,
+			// Misc::class,
 			Pages\Admin::class,
 			Base\Enqueue::class,
-			CPT\CPT::class,
 			Base\SettingsLink::class
 		];
 	}
@@ -43,7 +44,6 @@ final class Init
 	private static function instantiate( $class )
 	{
 		$service = new $class();
-
 		return $service;
 	}
 }

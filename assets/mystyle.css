@@ -48,3 +48,19 @@
 .copy-to-clip-input{
 	display: none;
 }
+
+
+.role-author div#cruiser_author_meta_box {
+	display: none !important;
+}
+
+
+#title-prompt-text{
+	padding: 1px 10px !important;
+}
+
+.notopics{
+	margin: 4px;
+	color: #c63737;
+	font-weight: bold;
+}

@@ -70,7 +70,7 @@ register_deactivation_hook( __FILE__, 'deactivate_cruiser_plugin' );
 // Require the register_services from Init.php for calling all the class.
 if( class_exists( 'Inc\\Init' ) ){
 	Inc\Init::register_services();
-} 
+}
 
 // require_once( 'inc/CPT/CPT_metabox.php' );
 
@@ -78,29 +78,4 @@ if( class_exists( 'Inc\\Init' ) ){
 require_once 'inc\CPT\CPT_sub.php';
 require_once 'inc\CPT\CPT_metabox.php';
 
-
-
-add_action('pre_get_posts', 'filter_posts_list');
-
-function filter_posts_list($query)
-{
-    //$pagenow holds the name of the current page being viewed
-     global $pagenow, $typenow;  
-
- 	$user = wp_get_current_user();
-    $allowed_roles = array('author');
-    //Shouldn't happen for the admin, but for any role with the edit_posts capability and only on the posts list page, that is edit.php
-    if(array_intersect($allowed_roles, $user->roles ) && ('edit.php' == $pagenow) &&  $typenow == 'topics')
-    { 
-    //global $query's set() method for setting the author as the current user's id
-        $query->set(
-	        'meta_query', array(
-		        array(
-		            'key'     => 'cruiser_writer_value_key',
-		            'value'   => $user->display_name,
-		            'compare' => '==',
-		        ),
-	        )
-        ); // here you can set your custom meta field using meta_query.
-    }
-}
+require_once('inc\Misc.php');

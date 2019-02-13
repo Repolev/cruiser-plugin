@@ -6,6 +6,3 @@ Full List of Feature we will build in this plugin.
 * Ajax Based Login/Register System
 * Attendance System
 * Chat Manager
-* 
-* 
-* 

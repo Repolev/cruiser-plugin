@@ -15,7 +15,7 @@ class SettingsLink extends BaseController
 	}
 
 	public function settings_link( $links ){
-		$settings_link = '<a href="admin.php?page=cruiser_pugin">Settings</a>';
+		$settings_link = '<a href="admin.php?page=cruiser_plugin">Settings</a>';
 		array_push( $links, $settings_link );
 		return $links;
 	}
